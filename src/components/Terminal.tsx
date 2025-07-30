@@ -73,8 +73,7 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
         break;
       
       case 'ls':
-        output = `admybrand.com/
-├── dashboard/
+        output = `dashboard/
 ├── reports/
 ├── analytics/
 ├── users/
@@ -82,11 +81,11 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
         break;
       
       case 'whoami':
-        output = 'arch_004@admybrand.com';
+        output = '▲ arch_004';
         break;
       
       case 'pwd':
-        output = '/home/arch_004/admybrand.com';
+        output = '/home/arch_004/dashboard';
         break;
       
       case 'exit':
@@ -96,8 +95,8 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
       
       case 'neofetch':
         output = `
-         ▄▄▄▄▄▄▄▄▄    arch_004@admybrand.com
-       ▄█████████████▄  ──────────────────────
+         ▄▄▄▄▄▄▄▄▄    ▲ arch_004
+       ▄█████████████▄  ──────────────────
      ▄███████████████▄  OS: ArchLinux Dashboard
     ████████▀▀▀████████ Host: Terminal Dashboard
    ███████▀     ▀██████ Kernel: Web 6.9.0-LTS
@@ -105,7 +104,7 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
   ███████▄     ▄██████  Shell: terminal-dash
    ████████▄▄▄████████  Resolution: Responsive
     ▀███████████████▀   Theme: Catppuccin Mocha
-     ▀█████████████▀    Terminal: admybrand.com
+     ▀█████████████▀    Terminal: Dashboard
        ▀▀▀▀▀▀▀▀▀▀▀      
                         CPU: React Engine
                         Memory: ${(performance as any).memory ? 
@@ -161,9 +160,9 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-4xl h-[600px] bg-card terminal-border terminal-glow">
-        <div className="p-6 h-full flex flex-col">
+    <div className="min-h-screen bg-background flex items-center justify-center p-2 md:p-4">
+      <Card className="w-full max-w-4xl h-[90vh] md:h-[600px] bg-card terminal-border terminal-glow">
+        <div className="p-3 md:p-6 h-full flex flex-col">
           {/* Terminal Header */}
           <div className="flex items-center justify-between mb-4 border-b border-border pb-4">
             <div className="flex items-center gap-2">
@@ -172,11 +171,11 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
                 <div className="w-3 h-3 bg-warning rounded-full"></div>
                 <div className="w-3 h-3 bg-success rounded-full"></div>
               </div>
-              <span className="text-muted-foreground font-mono text-sm ml-4">
-                Terminal - admybrand.com
+              <span className="text-muted-foreground font-mono text-xs md:text-sm ml-2 md:ml-4">
+                Terminal Dashboard
               </span>
             </div>
-            <div className="text-xs text-muted-foreground font-mono">
+            <div className="text-xs text-muted-foreground font-mono hidden md:block">
               {new Date().toLocaleTimeString()}
             </div>
           </div>
@@ -184,11 +183,11 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
           {/* Terminal Content */}
           <div 
             ref={terminalRef}
-            className="flex-1 overflow-y-auto font-mono text-sm space-y-2"
+            className="flex-1 overflow-y-auto font-mono text-xs md:text-sm space-y-2"
           >
             {/* Welcome Message */}
             <div className="text-primary terminal-text">
-              Welcome to admybrand.com Terminal Dashboard
+              Welcome to Terminal Dashboard
             </div>
             <div className="text-muted-foreground">
               Type 'help' to see available commands
@@ -200,15 +199,15 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
             {/* Command History */}
             {history.map((entry, index) => (
               <div key={index} className="mb-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-success">arch_004@admybrand.com</span>
+                <div className="flex items-center gap-1 md:gap-2 flex-wrap">
+                  <span className="text-success">▲ arch_004</span>
                   <span className="text-muted-foreground">:</span>
-                  <span className="text-info">~/admybrand.com</span>
+                  <span className="text-info">~/dashboard</span>
                   <span className="text-primary">$</span>
-                  <span className="text-foreground">{entry.command}</span>
+                  <span className="text-foreground break-all">{entry.command}</span>
                 </div>
                 {entry.output && (
-                  <pre className="text-muted-foreground mt-1 whitespace-pre-wrap break-words">
+                  <pre className="text-muted-foreground mt-1 whitespace-pre-wrap break-words text-xs md:text-sm">
                     {entry.output}
                   </pre>
                 )}
@@ -216,30 +215,31 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
             ))}
 
             {/* Current Input Line */}
-            <form onSubmit={handleSubmit} className="flex items-center gap-2">
-              <span className="text-success">arch_004@admybrand.com</span>
-              <span className="text-muted-foreground">:</span>
-              <span className="text-info">~/admybrand.com</span>
-              <span className="text-primary">$</span>
+            <form onSubmit={handleSubmit} className="flex items-center gap-1 md:gap-2 flex-wrap">
+              <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
+                <span className="text-success">▲ arch_004</span>
+                <span className="text-muted-foreground">:</span>
+                <span className="text-info">~/dashboard</span>
+                <span className="text-primary">$</span>
+              </div>
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent border-none outline-none text-foreground font-mono"
+                className="flex-1 min-w-0 bg-transparent border-none outline-none text-foreground font-mono text-xs md:text-sm"
                 placeholder="Type a command..."
                 autoFocus
               />
-              <span className="text-primary terminal-cursor">▊</span>
             </form>
           </div>
 
           {/* Terminal Footer */}
-          <div className="text-xs text-muted-foreground mt-4 pt-4 border-t border-border">
-            <div className="flex justify-between">
-              <span>Press Tab for auto-completion</span>
-              <span>Connected to admybrand.com</span>
+          <div className="text-xs text-muted-foreground mt-2 md:mt-4 pt-2 md:pt-4 border-t border-border">
+            <div className="flex flex-col md:flex-row justify-between gap-2">
+              <span className="text-center md:text-left">Tab: auto-complete</span>
+              <span className="text-center md:text-right">Terminal Dashboard</span>
             </div>
           </div>
         </div>

@@ -164,15 +164,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onBack }) => {
               Terminal
             </Button>
             <div>
-              <h1 className="text-3xl font-bold terminal-text">
-                arch_004@admybrand.com
+              <h1 className="text-2xl md:text-3xl font-bold terminal-text">
+                ▲ arch_004
               </h1>
-              <p className="text-muted-foreground font-mono">
+              <p className="text-muted-foreground font-mono text-sm">
                 ~/dashboard - Admin Analytics Panel
               </p>
             </div>
           </div>
-          <div className="text-sm text-muted-foreground font-mono">
+          <div className="text-sm text-muted-foreground font-mono hidden md:block">
             {new Date().toLocaleString()}
           </div>
         </div>

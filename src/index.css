@@ -188,15 +188,7 @@ All colors MUST be HSL.
     background: hsl(var(--secondary));
   }
 
-  /* Animation for terminal cursor */
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-  .terminal-cursor {
-    animation: blink 1s infinite;
-  }
+  /* Animation removed for mobile compatibility */
 
   /* Responsive table */
   .data-table {
