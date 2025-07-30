@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import Dashboard from './Dashboard';
+import Messages from './Messages';
+import Important from './Important';
 
 interface TerminalProps {
   onCommand?: (command: string) => void;
@@ -15,7 +17,7 @@ interface CommandHistory {
 const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<CommandHistory[]>([]);
-  const [currentView, setCurrentView] = useState<'terminal' | 'dashboard'>('terminal');
+  const [currentView, setCurrentView] = useState<'terminal' | 'dashboard' | 'messages' | 'important'>('terminal');
   const [isVisible, setIsVisible] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -23,8 +25,9 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
   const availableCommands = [
     'help',
     'clear',
-    'cd report',
     'cd dashboard',
+    'cd msg',
+    'cd important',
     'ls',
     'whoami',
     'pwd',
@@ -53,8 +56,9 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
         output = `Available commands:
   help        - Show this help message
   clear       - Clear terminal screen
-  cd report   - Navigate to reports dashboard
-  cd dashboard- Access admin dashboard
+  cd dashboard- Access admin dashboard & analytics
+  cd msg      - Open messages and communications
+  cd important- View critical alerts and notifications
   ls          - List available sections
   whoami      - Display current user
   pwd         - Show current directory
@@ -66,16 +70,26 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
         setHistory([]);
         return;
       
-      case 'cd report':
       case 'cd dashboard':
         output = 'Loading dashboard...';
         setCurrentView('dashboard');
         break;
       
+      case 'cd msg':
+        output = 'Opening messages...';
+        setCurrentView('messages');
+        break;
+      
+      case 'cd important':
+        output = 'Loading important notifications...';
+        setCurrentView('important');
+        break;
+      
       case 'ls':
         output = `dashboard/
-├── reports/
 ├── analytics/
+├── messages/
+├── important/
 ├── users/
 └── settings/`;
         break;
@@ -159,6 +173,36 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
     );
   }
 
+  if (currentView === 'messages') {
+    return (
+      <Messages 
+        onBack={() => {
+          setCurrentView('terminal');
+          setHistory(prev => [...prev, { 
+            command: 'exit messages', 
+            output: 'Returned to terminal', 
+            timestamp: new Date() 
+          }]);
+        }} 
+      />
+    );
+  }
+
+  if (currentView === 'important') {
+    return (
+      <Important 
+        onBack={() => {
+          setCurrentView('terminal');
+          setHistory(prev => [...prev, { 
+            command: 'exit important', 
+            output: 'Returned to terminal', 
+            timestamp: new Date() 
+          }]);
+        }} 
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-2 md:p-4">
       <Card className="w-full max-w-4xl h-[90vh] md:h-[600px] bg-card terminal-border terminal-glow">
@@ -193,7 +237,7 @@ const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
               Type 'help' to see available commands
             </div>
             <div className="text-muted-foreground mb-4">
-              Use 'cd report' or 'cd dashboard' to access the admin panel
+              Use 'cd dashboard', 'cd msg', or 'cd important' to access different sections
             </div>
 
             {/* Command History */}
