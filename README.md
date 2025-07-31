@@ -1,73 +1,98 @@
-# Welcome to your Lovable project
 
-## Project info
+# 🖥️ admybrand.com — Terminal Dashboard
 
-**URL**: https://lovable.dev/projects/5f3e78c1-7fe8-471b-9a10-498f4e8a98a6
+A fully responsive **terminal-style web dashboard** built with a nostalgic aesthetic and modern interactive features. Navigate your admin analytics, messages, and alerts using shell-like commands inside a sleek black & pink terminal interface.
 
-## How can I edit this code?
+> Live Demo: [https://admybrand-dashboard-xi.vercel.app/](https://admybrand.com)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🧑‍💻 Terminal UI Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5f3e78c1-7fe8-471b-9a10-498f4e8a98a6) and start prompting.
+```
+Welcome to Terminal Dashboard
+Type 'help' to see available commands
+Use 'cd dashboard', 'cd msg', or 'cd important' to access different sections
+▲ arch_004:~/dashboard$ help
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+Available commands:
+  help         - Show this help message
+  clear        - Clear terminal screen
+  cd dashboard - Access admin dashboard & analytics
+  cd msg       - Open messages and communications
+  cd important - View critical alerts and notifications
+  ls           - List available sections
+  whoami       - Display current user
+  pwd          - Show current directory
+  neofetch     - Display system information
+  exit         - Exit terminal
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## ✨ Key Features
 
-**Use GitHub Codespaces**
+### 💻 Terminal Simulation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+* Prompt: `arch_004@admybrand:~$`
+* Interactive command input with simulated output
+* Mobile-optimized terminal experience
+* Animated output for commands
 
-## What technologies are used for this project?
+### 📊 `cd dashboard` — Admin Analytics
 
-This project is built with:
+* Metric Cards: Revenue, Users, Conversions, Growth %
+* Interactive Charts:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+  * Line Chart (Revenue over time)
+  * Bar Chart (User growth)
+  * Donut Chart (Conversion sources)
 
-## How can I deploy this project?
+### 💬 `cd msg` — Messages & Logs
 
-Simply open [Lovable](https://lovable.dev/projects/5f3e78c1-7fe8-471b-9a10-498f4e8a98a6) and click on Share -> Publish.
+* Shows mock communications
+* Styled like terminal logs
 
-## Can I connect a custom domain to my Lovable project?
+### ⚠️ `cd important` — Critical Alerts
 
-Yes, you can!
+* Displays simulated security/alert messages
+* Terminal warning formatting
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 🧠 Extras
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+* `neofetch`: Shows fake system info (user, OS, browser)
+* `ls`, `whoami`, `pwd`, `exit`, `clear`: Shell-like behavior
+
+---
+
+## 🔧 Tech Stack
+
+* **Frontend**: HTML, TailwindCSS, JavaScript / TypeScript
+* **Build Tools**: [Bun](https://bun.sh) and [Vite](https://vitejs.dev)
+* **UI Theme**: Catppuccin / Oxocarbon Black with Rich Pink
+* **Charts**: Chart.js or Recharts
+* **Terminal Simulation**: Custom command parser & renderer
+* **Responsive Design**: Desktop, Tablet & Mobile support
+
+---
+
+## ✅ Getting Started
+
+### 📦 Installation
+
+```bash
+git clone https://github.com/your-username/admybrand-terminal-dashboard.git
+cd admybrand-terminal-dashboard
+bun install
+bun dev
+```
+
+> Requires Bun runtime: [Install Bun](https://bun.sh/docs/installation)
+
+### 🔨 Build for Production
+
+```bash
+bun run build
+```
+
+---
