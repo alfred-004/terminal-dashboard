@@ -3,7 +3,7 @@
 
 A fully responsive **terminal-style web dashboard** built with a nostalgic aesthetic and modern interactive features. Navigate your admin analytics, messages, and alerts using shell-like commands inside a sleek black & pink terminal interface.
 
-> Live Demo: [https://admybrand-dashboard-xi.vercel.app/](https://admybrand.com)
+> Live Demo: [terminal-dashboard](https://admybrand-dashboard-xi.vercel.app/)
 
 ---
 
